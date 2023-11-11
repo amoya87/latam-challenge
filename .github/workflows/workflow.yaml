@@ -38,3 +38,6 @@ jobs:
       - name: Run safety
         run: |
           safety check
+      - name: Analysing the code with pylint
+        run: |
+          pylint 'src'
