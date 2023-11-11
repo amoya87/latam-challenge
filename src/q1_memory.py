@@ -1,5 +1,8 @@
-from typing import List, Tuple
+import json
+from collections import Counter, defaultdict
 from datetime import datetime
+from typing import List, Tuple
+
 
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
     # Create a dictionary to count objects by date and name
