@@ -13,7 +13,8 @@ def q3_memory(file_path: str) -> List[Tuple[str, int]]:
                 mentioned_users = doc.get("mentionedUsers", [])
                 if mentioned_users:
                     mentions = [
-                        mention["username"] for mention in mentioned_users
+                        mention["username"].encode("ascii")
+                        for mention in mentioned_users
                     ]
                     # Count the frequency of each mention
                     mention_counter.update(mentions)
@@ -22,6 +23,7 @@ def q3_memory(file_path: str) -> List[Tuple[str, int]]:
                 print(f"Error processing line: {line.strip()}. Error: {e}")
 
     # Find the top 10 mentions
-    top_10_mentions = mention_counter.most_common(10)
+    top_10_byte = mention_counter.most_common(10)
+    top_10_mentions = [(e[0].decode("ascii"), e[1]) for e in top_10_byte]
 
     return top_10_mentions
