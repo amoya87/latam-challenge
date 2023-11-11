@@ -4,7 +4,19 @@ from datetime import datetime
 from typing import List, Tuple
 
 
+# @profile
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
+    """
+    The top 10 dates where there are the most tweets. Mention the username
+    who has the most publications for each of those days.
+
+    Args:
+        file_path (str): The path to the JSON file containing tweet data.
+
+    Returns: List[Tuple[str, int]]: A list of at most 10 tuples of dates
+    where there are the most tweets where each tuple contains a date and
+    the username that has the most tweets on that date.
+    """
     # Create a dictionary to count objects by date and name
     date_name_count = defaultdict(Counter)
     # Create a dictionary to count objects by timestamps

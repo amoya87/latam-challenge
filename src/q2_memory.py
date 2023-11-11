@@ -5,7 +5,18 @@ from typing import List, Tuple
 from util import extract_emojis
 
 
+# @profile
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
+    """
+    Extract top-10 emojis from a JSON file containing tweets.
+
+    Args:
+        file_path (str): The path to the JSON file containing tweet data.
+
+    Returns: List[Tuple[str, int]]: A list of at most 10 tuples with the most
+    frequent emojis where each tuple contains an emoji and its frequency of
+    appearance, ordered in descending order of frequency.
+    """
     # Create a dictionary to count objects by timestamps
     emoji_count = Counter()
 
