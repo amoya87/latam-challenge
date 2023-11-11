@@ -16,12 +16,14 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
                 text = doc["content"]
                 emojis_found = extract_emojis(text)
                 # Count the frequency of each emoji
-                emoji_count.update(emojis_found)
+                codes = [ord(e) for e in emojis_found]
+                emoji_count.update(codes)
             except (json.JSONDecodeError, KeyError) as e:
                 # Handle JSON decoding errors or missing keys
                 print(f"Error processing line: {line.strip()}. Error: {e}")
 
         # Find the top 10 emojis
-        top_10_emojis = emoji_count.most_common(10)
+        top_10_codes = emoji_count.most_common(10)
+        top_10_emojis = [(chr(e[0]), e[1]) for e in top_10_codes]
 
         return top_10_emojis
