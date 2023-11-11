@@ -4,7 +4,7 @@ import os
 import sys
 import unittest
 
-from src import q1_memory
+from src import q1_memory, q2_memory
 
 # Get the full path to the 'src' directory
 src_path = os.path.abspath(
@@ -22,55 +22,55 @@ class TestSuit(unittest.TestCase):
         test_data = [
             {
                 "date": "2021-02-24T09:22:11+00:00",
-                "content": None,
+                "content": "🙏",
                 "user": {"username": "Alberto"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-24T09:22:11+00:00",
-                "content": None,
+                "content": "😂🙏text👀text",
                 "user": {"username": "Moya"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-24T09:22:11+00:00",
-                "content": None,
+                "content": "🙏",
                 "user": {"username": "Loustaunau"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-24T09:22:11+00:00",
-                "content": None,
+                "content": "🙏",
                 "user": {"username": "Alberto"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-25T09:22:08+00:00",
-                "content": None,
+                "content": "👀 text😂",
                 "user": {"username": "Moya"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-25T09:22:09+00:00",
-                "content": None,
+                "content": "🙏",
                 "user": {"username": "Moya"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-25T09:22:10+00:00",
-                "content": None,
+                "content": "😂",
                 "user": {"username": "Moya"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-25T09:22:11+00:00",
-                "content": None,
+                "content": "dfasgh ghfjkshjg gfsdhg",
                 "user": {"username": "Alberto"},
                 "mentionedUsers": None,
             },
             {
                 "date": "2021-02-25T09:22:11+00:00",
-                "content": None,
+                "content": "💚",
                 "user": {"username": "Alberto"},
                 "mentionedUsers": None,
             },
@@ -83,7 +83,7 @@ class TestSuit(unittest.TestCase):
 
         self.expected_dates = ["2021-02-25", "2021-02-24"]
 
-        self.expected_emojis = []
+        self.expected_emojis = [("🙏", 5), ("😂", 3), ("👀", 2), ("💚", 1)]
 
         self.expected_mentions = []
 
@@ -106,3 +106,12 @@ class TestSuit(unittest.TestCase):
         dates = [date.strftime("%Y-%m-%d") for date, _ in result]
 
         self.assertEqual(dates, self.expected_dates)
+
+    def test_q2(self):
+        # Call the function with the test JSON file
+        results = q2_memory.q2_memory("test_data.json")
+
+        # Verification of expected results
+        self.assertEqual(
+            results, self.expected_emojis
+        )
