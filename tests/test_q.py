@@ -4,8 +4,6 @@ import os
 import sys
 import unittest
 
-from src import q1_memory, q2_memory
-
 # Get the full path to the 'src' directory
 src_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "src")
@@ -13,6 +11,8 @@ src_path = os.path.abspath(
 
 # Add 'src' to Python path
 sys.path.append(src_path)
+
+from src import q1_memory, q2_memory
 
 
 class TestSuit(unittest.TestCase):
