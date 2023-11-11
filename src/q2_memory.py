@@ -2,10 +2,12 @@ import json
 from collections import Counter
 from typing import List, Tuple
 
+from memory_profiler import profile
+
 from util import extract_emojis
 
 
-# @profile
+@profile
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     """
     Extract top-10 emojis from a JSON file containing tweets.

@@ -3,8 +3,10 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from typing import List, Tuple
 
+from memory_profiler import profile
 
-# @profile
+
+@profile
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
     """
     The top 10 dates where there are the most tweets. Mention the username

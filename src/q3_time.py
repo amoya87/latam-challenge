@@ -2,8 +2,10 @@ import json
 from collections import Counter
 from typing import List, Tuple
 
+from memory_profiler import profile
 
-# @profile
+
+@profile
 def q3_time(file_path: str) -> List[Tuple[str, int]]:
     """
     Extracts the 10 most mentioned usernames in tweets from a JSON file.
