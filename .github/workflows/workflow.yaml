@@ -30,8 +30,7 @@ jobs:
       - name: Run flake8
         run: flake8 'src' --ignore "E203,W503"
       - name: Run bandit
-        run: |
-          bandit -r 'src'
+        run: bandit -r 'src'
       - name: Run safety
         run: |
           safety check
