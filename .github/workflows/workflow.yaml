@@ -26,3 +26,6 @@ jobs:
       - name: Black check
         run: |
           black . --check --verbose -l 79
+      - name: Run isort
+        run: |
+          isort . --check-only --profile black -l 79
