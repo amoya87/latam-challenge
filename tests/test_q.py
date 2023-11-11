@@ -14,7 +14,7 @@ src_path = os.path.abspath(
 # Add 'src' to Python path
 sys.path.append(src_path)
 
-from src import q1_memory, q2_memory, q3_memory, q1_time, q2_time
+from src import q1_memory, q1_time, q2_memory, q2_time, q3_memory, q3_time
 
 
 class TestSuit(unittest.TestCase):
@@ -141,11 +141,17 @@ class TestSuit(unittest.TestCase):
             results, self.expected_emojis, f"{param}: test failure"
         )
 
-    def test_q3(self, ):
+    @parameterized.expand(
+        [
+            ("memory", q3_memory.q3_memory),
+            ("time", q3_time.q3_time),
+        ]
+    )
+    def test_q3(self, param, function):
         # Call the function with the test JSON file
-        results = q3_memory.q3_memory("test_data.json")
+        results = function("test_data.json")
 
         # Verification of expected results
         self.assertEqual(
-            results, self.expected_mentions
+            results, self.expected_mentions, f"{param}: test failure"
         )
