@@ -12,7 +12,7 @@ src_path = os.path.abspath(
 # Add 'src' to Python path
 sys.path.append(src_path)
 
-from src import q1_memory, q2_memory
+from src import q1_memory, q2_memory, q3_memory
 
 
 class TestSuit(unittest.TestCase):
@@ -24,7 +24,10 @@ class TestSuit(unittest.TestCase):
                 "date": "2021-02-24T09:22:11+00:00",
                 "content": "🙏",
                 "user": {"username": "Alberto"},
-                "mentionedUsers": None,
+                "mentionedUsers": [
+                    {"username": "LATAM321"},
+                    {"username": "LATAM_CHI"},
+                ],
             },
             {
                 "date": "2021-02-24T09:22:11+00:00",
@@ -42,7 +45,11 @@ class TestSuit(unittest.TestCase):
                 "date": "2021-02-24T09:22:11+00:00",
                 "content": "🙏",
                 "user": {"username": "Alberto"},
-                "mentionedUsers": None,
+                "mentionedUsers": [
+                    {"username": "LATAM_CHI"},
+                    {"username": "LATAM321"},
+                    {"username": "LATAMAirlines"},
+                ],
             },
             {
                 "date": "2021-02-25T09:22:08+00:00",
@@ -60,7 +67,7 @@ class TestSuit(unittest.TestCase):
                 "date": "2021-02-25T09:22:10+00:00",
                 "content": "😂",
                 "user": {"username": "Moya"},
-                "mentionedUsers": None,
+                "mentionedUsers": [{"username": "LATAM_CHI"}],
             },
             {
                 "date": "2021-02-25T09:22:11+00:00",
@@ -85,7 +92,11 @@ class TestSuit(unittest.TestCase):
 
         self.expected_emojis = [("🙏", 5), ("😂", 3), ("👀", 2), ("💚", 1)]
 
-        self.expected_mentions = []
+        self.expected_mentions = [
+            ("LATAM_CHI", 3),
+            ("LATAM321", 2),
+            ("LATAMAirlines", 1),
+        ]
 
     def tearDown(self):
         # Delete test file after testing
@@ -114,4 +125,13 @@ class TestSuit(unittest.TestCase):
         # Verification of expected results
         self.assertEqual(
             results, self.expected_emojis
+        )
+
+    def test_q3(self, ):
+        # Call the function with the test JSON file
+        results = q3_memory.q3_memory("test_data.json")
+
+        # Verification of expected results
+        self.assertEqual(
+            results, self.expected_mentions
         )
