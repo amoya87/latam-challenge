@@ -24,8 +24,7 @@ jobs:
           pip install pytest pytest-cov
           pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
       - name: Black check
-        run: |
-          black . --check --verbose -l 79
+        run: black . --check --verbose -l 79
       - name: Run isort
         run: |
           isort . --check-only --profile black -l 79
