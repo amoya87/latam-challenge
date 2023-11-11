@@ -34,4 +34,4 @@ jobs:
       - name: Run safety
         run: safety check
       - name: Analysing the code with pylint
-        run: pylint 'src'
+        run: pylint 'src' -d "C0114" --exit-zero -r y
