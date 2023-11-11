@@ -4,6 +4,8 @@ import os
 import sys
 import unittest
 
+from parameterized import parameterized
+
 # Get the full path to the 'src' directory
 src_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "src")
@@ -12,7 +14,7 @@ src_path = os.path.abspath(
 # Add 'src' to Python path
 sys.path.append(src_path)
 
-from src import q1_memory, q2_memory, q3_memory
+from src import q1_memory, q2_memory, q3_memory, q1_time
 
 
 class TestSuit(unittest.TestCase):
@@ -104,9 +106,15 @@ class TestSuit(unittest.TestCase):
 
         os.remove("test_data.json")
 
-    def test_q1(self):
+    @parameterized.expand(
+        [
+            ("memory", q1_memory.q1_memory),
+            ("time", q1_time.q1_time),
+        ]
+    )
+    def test_q1(self, param, function):
         # Call the function with the test JSON file
-        result = q1_memory.q1_memory("test_data.json")
+        result = function("test_data.json")
 
         # Checks if the result is a list of tuples with the correct format
         for _date, name in result:
@@ -116,7 +124,7 @@ class TestSuit(unittest.TestCase):
         # Check that the dates in the result are in the correct order
         dates = [date.strftime("%Y-%m-%d") for date, _ in result]
 
-        self.assertEqual(dates, self.expected_dates)
+        self.assertEqual(dates, self.expected_dates, f"{param}: test failure")
 
     def test_q2(self):
         # Call the function with the test JSON file
